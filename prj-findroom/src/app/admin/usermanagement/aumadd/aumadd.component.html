@@ -1,0 +1,96 @@
+<app-navbar></app-navbar>
+<div class="row" style="margin-right:auto;">
+  <div class="col-xs-12 col-sm-2">
+    <app-tabbar></app-tabbar>
+  </div>
+  <!--  -->
+  <div class="col-xs-12 col-sm-10">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="#">
+          <i class="fa fa-home"></i>
+        </a>
+      </li>
+      <li class="breadcrumb-item active">Quản lý người dùng</li>
+    </ol>
+    <br>
+    <div class="card border-success mb-3">
+      <div class="card-header text-white bg-success"><i class="fa fa-cog"></i> Thêm mới người dùng</div>
+      <div class="card-body">
+        <form #userForm="ngForm">
+          <div class="form-group row">
+            <label for="inputHovaten" class="col-sm-2 col-form-label">Họ và tên <span style="color:red">(*)</span></label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="inputHovaten" name="name" [(ngModel)]="user.name" placeholder="Nguyễn Văn A">
+            </div>
+          </div>
+  
+          <div class="form-group row">
+            <label for="inputSodienthoai" class="col-sm-2 col-form-label">Số điện thoại <span style="color:red">(*)</span></label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="inputSodienthoai" name="phone" [(ngModel)]="user.phone" placeholder="0123456789">
+            </div>
+          </div>
+  
+          <div class="form-group row">
+            <label for="inputEmail" class="col-sm-2 col-form-label">Email <span style="color:red">(*)</span></label>
+            <div class="col-sm-10">
+              <input type="email" class="form-control" id="inputEmail" name="email" [(ngModel)]="user.email" placeholder="abc@gmail.com">
+            </div>
+          </div>
+  
+          <!-- <div class="form-group row">
+            <label for="selectQuan" class="col-sm-2 col-form-label">Quận <span style="color:red">(*)</span></label>
+            <div class="col-sm-2">
+              <select class="form-control" id="selectQuan">
+                <option>Quận 1</option>
+                <option>Quận 2</option>
+                <option>Quận 3</option>
+                <option>Quận 4</option>
+                <option>Quận 5</option>
+              </select>
+            </div>
+          </div> -->
+  
+          <div class="form-group row">
+            <label for="inputDiachi" class="col-sm-2 col-form-label">Địa chỉ <span style="color:red">(*)</span></label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="inputDiachi" name="address" [(ngModel)]="user.address" placeholder="số 1 đường 2 quận 3....">
+            </div>
+          </div>
+  
+          <div class="form-group row">
+            <label for="inputNgaysinh" class="col-sm-2 col-form-label">Ngày sinh <span style="color:red">(*)</span></label>
+            <div class="col-sm-10">
+              <input type="date" class="form-control" id="inputNgaysinh" name="birthday" [(ngModel)]="user.birthday">
+            </div>
+          </div>
+  
+          <div class="form-group row">
+            <label for="textareaThongtinkhac" class="col-sm-2 col-form-label">Thông tin khác</label>
+            <div class="col-sm-10">
+              <textarea rows="5" class="form-control" id="textareaThongtinkhac" name="moreinformation" [(ngModel)]="user.moreinformation" placeholder=""></textarea>
+            </div>
+          </div>
+  
+          <div class="form-group row">
+            <label for="inputMatkhau" class="col-sm-2 col-form-label">Mật khẩu <span style="color:red">(*)</span></label>
+            <div class="col-sm-10">
+              <input type="password" class="form-control" id="inputMatkhau" name="password" [(ngModel)]="user.password" placeholder="Mật khẩu">
+            </div>
+          </div>
+  
+          <div class="form-group row">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-10">
+              <flash-messages></flash-messages>
+              <button type="button" class="btn btn-success" (click)="addNewUser()"><i class="fa fa-cloud"></i> Lưu</button>
+              <button type="button" class="btn btn-primary" (click)="refreshForm()"><i class="fa fa-refresh"></i> Làm mới</button>
+              <button type="button" class="btn btn-danger" (click)="goBack()"><i class="fa fa-caret-square-o-left"></i> Trở về</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

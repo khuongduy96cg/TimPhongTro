@@ -1,0 +1,205 @@
+<app-navbarhome></app-navbarhome>
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col-md-9">
+      <div class="col-md-12">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item" style="font-weight:bold">
+            <a href="#">
+              TRANG CHỦ
+            </a>
+          </li>
+          <li class="breadcrumb-item" style="font-weight:bold">
+            <a href="">Phòng trọ, nhà trọ</a>
+          </li>
+          <li class="breadcrumb-item active" style="color:green;font-weight:bold">{{room?.detail?.title}}</li>
+        </ol>
+        <div class="room-detail">
+          <div class="title">
+            <a href="">
+              <h1>{{room?.detail?.title}}</h1>
+            </a>
+          </div>
+          <div class="social">
+            <div class="pull-left facebook">
+              <a href="https://www.facebook.com/sharer/sharer.php?s=100&p[url]=http://www.example.com&p[images][0]=&p[title]=Title%20Goes%20Here&p[summary]=Description%20goes%20here!"
+                target="_blank" onclick="window.open(this.href,'targetWindow','toolbar=no,location=0,status=no,menubar=no,scrollbars=yes,resizable=yes,width=600,height=250'); return false">
+                <button style="width:100%; margin-top:10px;" type="button" class="btn btn-facebook btn-sm">
+                  <i class="fa fa-facebook fa-2"></i> Share on Facebook</button>
+              </a>
+            </div>
+            <div class="pull-right">
+              <a href="">
+                <span>Lượt xem : </span>1
+              </a>
+            </div>
+          </div>
+
+          <div class="clearfix"></div>
+
+          <div class="main-info">
+            <div class="row">
+              <div class="col-md-8 left-info no-padding-right">
+                <div class="address">
+                  <span class="btn info-label">Địa chỉ</span>
+                  <a class="" href="">{{room?.detail?.addressdetail}}</a>,
+                  <a class="" href="">Tân Sơn Nhì</a>,
+                  <a class="" href="">Tân Phú</a>,
+                  <a class="" href="">Hồ Chí Minh</a>
+                </div>
+                <div class="size">
+                  <span class="btn info-label">Diện tích</span>
+                  <a href="" class="btn info-data">{{room?.detail?.area}}m
+                    <sup>2</sup>
+                  </a>
+                  <span class="btn info-label">Loại phòng</span>
+                  <a href="">Phòng trọ, nhà trọ</a>
+                </div>
+                <div class="tang">
+                  <span class="btn info-label">Tầng</span>
+                  <a href="" class="btn info-data"> {{room?.more?.floor}} </a>
+                </div>
+                <div class="vs">
+                  <span class="btn info-label">Vệ sinh</span>
+                  <a href="" class="btn info-data">{{room?.more?.tolet}}</a>
+                  <span class="btn info-label">Số người ở</span>
+                  <a href=""> {{room?.more?.countpeople}} </a>
+                </div>
+                <div class="type">
+                  <span class="btn info-label">Giá điện</span>
+                  <a href="" class="btn info-data">{{room?.more?.electricprice}}</a>
+                  <span class="btn info-label">Giá nước</span>
+                  <a href="">{{room?.more?.waterprice}}</a>
+                </div>
+                <div class="type">
+                  <span class="btn info-label">Tiện ích</span>
+                  <a href="">Chỗ để xe</a>
+                  ,
+                  <a href="">Sân phơi</a>
+                  ,
+                  <a href="">Thang máy</a>
+                  ,
+                  <a href="">Internet</a>
+                  ,
+                  <a href="">Điều hòa</a>
+                  ,
+                  <a href="">Máy giặt</a>
+                  ,
+                  <a href="">Truyền hình cáp</a>
+                </div>
+              </div>
+              <div class="col-md-4 info-contact no-padding-left">
+                <div class="contact-label">
+                  <a href="">
+                    <span class="fa fa-mobile-phone"></span>Thông tin liên hệ</a>
+                </div>
+                <div class="chr">
+                  <hr>
+                </div>
+                <div class="info-price">
+                  <a href="">
+                    <span class="fa fa-unlock-alt"></span>{{room?.detail?.price}} Đ/tháng</a>
+                </div>
+                <div class="info-boss">
+                  <a href="">
+                    <span class="fa fa-user"></span>{{room?.info?.createdBy?.name}}</a>
+                </div>
+                <div class="info-phone">
+                  <a href="">
+                    <span class="fa fa-mobile-phone"></span>{{room?.detail?.phone}}</a>
+                </div>
+                <div class="info-feedback">
+                  <a class="btn btn-report-room clearfix" href="#tab_auth_login" data-toggle="modal" data-target="#modal_auth">Phản hồi tình trạng</a>
+                  <a class="btn btn-save-room clearfix" href="#">Lưu tin</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <app-carousel [childMessage]="room.more.imageurl"></app-carousel>
+
+      <div class="room-detail-des">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="des-label room-list-category">
+              <div class="pull-left">
+                <a>
+                  <h3>
+                    <span>Thông tin</span> chi tiết
+                    <i class="fa fa-angle-right"></i>
+                  </h3>
+                </a>
+              </div>
+              <div class="clearfix"></div>
+              <hr>
+            </div>
+            <div class="dis-content">{{room?.description}}</div>
+          </div>
+        </div>
+      </div>
+      <br>
+
+    </div>
+
+    <div class="col-md-3">
+      <div class="row">
+        <div class="col-sm-6 col-md-12">
+          <div class="advance-search" style="padding:10px;">
+            <form action="">
+              <span style="font-size:25px;color:red;">Tìm kiếm nâng cao</span>
+              <select class="form-control" id="exampleSelect1">
+                <option value="" disabled>Chọn quận</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+              </select>
+              <select class="form-control" id="exampleSelect1">
+                <option value="" disabled>Chọn phường</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+              </select>
+              <select class="form-control" id="exampleSelect1">
+                <option value="" disabled>Chọn đường</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+              </select>
+              <select class="form-control" id="exampleSelect1">
+                <option value="" disabled>Loại phòng</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+              </select>
+              <select class="form-control" id="exampleSelect1">
+                <option value="" disabled>Chọn khoảng giá</option>
+                <option>Dưới 1 triệu</option>
+                <option>1 triệu - 5 triệu</option>
+                <option>5 triệu - 10 triệu</option>
+                <option>10 triệu - 20 triệu</option>
+                <option>Trên 20 triệu</option>
+              </select>
+              <div style="text-align: center;">
+                <button type="button" class="btn btn-success">
+                  <i class="fa fa-search"></i> Tìm kiếm</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

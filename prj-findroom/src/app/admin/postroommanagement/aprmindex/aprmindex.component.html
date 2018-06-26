@@ -1,0 +1,120 @@
+<app-navbar></app-navbar>
+<div class="row" style="margin-right:auto;">
+  <div class="col-xs-12 col-sm-2">
+    <app-tabbar></app-tabbar>
+  </div>
+  <!--  -->
+  <div class="col-xs-12 col-sm-10">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item mt-li-element">
+        <a href="#">
+          <i class="fa fa-home"></i>
+        </a>
+      </li>
+      <li class="breadcrumb-item mt-li-element mr-li-element active">Quản lý tin đăng</li>
+    </ol>
+    <br>
+    <div class="form-inline">
+      <input class="form-control" type="text" name="" id="" placeholder="Tìm kiếm">
+      <button type="button" class="btn btn-success">Tìm kiếm</button>
+      <h5 style="margin-left:auto;">Khu vực quản lý: <strong>TP.HCM - Quận 1</strong></h5>
+      <select class="form-control" id="postroomStatusSelect" style="margin-left:auto; margin-right:0;" (change)="statusDropDownChanged($event.target.value)">
+        <option value="all">Tất cả</option>
+        <option value="accepted">Đã duyệt</option>
+        <option value="waiting" selected>Chờ duyệt</option>
+        <option value="refused">Bị từ chối</option>
+        <option value="locked">Bị khóa</option>
+      </select>
+    </div>
+    <div class="card border-success mb-3">
+      <div class="card-header text-white bg-success">Danh sách</div>
+      <div class="card-body">
+
+        <table class="table table-hover table-bordered">
+          <thead>
+            <tr>
+              <th scope="col">Id</th>
+              <th scope="col">Tiêu đề</th>
+              <th scope="col">Thông tin cơ bản</th>
+              <th scope="col">Thông tin chi tiết</th>
+              <th scope="col">Thông tin bổ sung</th>
+              <th scope="col">Mô tả</th>
+              <th scope="col">Thao tác</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of rooms | paginate: { itemsPerPage: 5, currentPage: p }">
+              <th scope="row">{{item._id}}</th>
+              <td>{{item.detail.title}}</td>
+              <td>
+                <ul>
+                  <li>Nhu cầu: <strong *ngIf="item.base.need === 1">Cho thuê</strong><strong *ngIf="item.base.need === 2">Ở ghép</strong></li>
+                  <li>Loại phòng: <strong *ngIf="item.base.type === 1">Phòng trọ,nhà trọ</strong><strong *ngIf="item.base.type === 2">Nhà nguyên căn</strong></li>
+                </ul>
+              </td>
+              <td>
+                <ul>
+                  <li>Người đăng: <a href="#">{{item?.info?.createdBy?.name}}</a></li>
+                  <li> Ngày đăng: <strong>01/01/0001</strong></li>
+                  <li> Số điện thoại: <strong>{{item.detail.phone}}</strong></li>
+                  <li>Giá: <strong>{{item.detail.price}} <span>Đ/tháng</span></strong></li>
+                  <li>Diện tích: <strong>{{item.detail.area}} <span>m2</span></strong></li>
+                  <li>Địa chỉ cụ thể: <strong>{{item.detail.addressdetail}}</strong></li>
+                </ul>
+              </td>
+              <td>
+                <!-- phong tro, nha tro -->
+                <ul *ngIf="item.base.type === 1">
+                  <li>Tầng: <strong>{{item.more.floor}}</strong></li>
+                  <li>Vệ sinh: <strong>{{item.more.tolet}}</strong></li>
+                  <li>Số người ở tối đa: <strong>{{item.more.countpeople}}</strong></li>
+                  <li>Giá điện: <strong>{{item.more.electricprice}}</strong></li>
+                  <li>Giá nước: <strong>{{item.more.waterprice}}</strong></li>
+                  
+                  <li>Tiện ích: <strong>{{item.more.utility}}</strong></li>
+                  <li>Ảnh: <app-carousel [childMessage]="item.more.imageurl"></app-carousel></li>
+                  <li>Bản đồ: </li>
+                </ul>
+                <!-- nha nguyen can -->
+                <ul *ngIf="item.base.type === 2">
+                  <li>Số tầng: <strong>{{item.more.countfloor}}</strong></li>
+                  <li>Số phòng vệ sinh: <strong>{{item.more.counttolet}}</strong></li>
+                  <li>Số phòng ngủ: <strong>{{item.more.countbedroom}}</strong></li>
+                  <li>Hướng nhà: <strong>{{item.more.direction}}</strong></li>
+
+                  <li>Tiện ích: <strong>{{item.more.utility}}</strong></li>
+                  <li>Ảnh: <app-carousel [childMessage]="item.more.imageurl"></app-carousel></li>
+                  <li>Bản đồ: </li>
+                </ul>
+              </td>
+              <td>
+                  {{item?.description}}
+              </td>
+              <td>
+                  <!-- tu choi tin -->
+                  <button *ngIf="item.status == 'waiting'" type="button" class="btn btn-sm btn-danger" (click)="goTo(item._id,'refuse')">
+                      <i class="fa fa-remove"></i>
+                    </button>
+                      <!-- duyet tin -->
+                    <button *ngIf="item.status == 'waiting'" type="button" class="btn btn-sm btn-success" (click)="goTo(item._id,'accept')">
+                        <i class="fa fa-check"></i>
+                    </button>
+                    <!-- lock tin da dang -->
+                    <button *ngIf="item.status == 'accepted'" type="button" class="btn btn-sm btn-warning" (click)="goTo(item._id,'lock')">
+                        <i class="fa fa-lock"></i>
+                    </button>
+                    <!-- unlock tin blocked -->
+                    <button *ngIf="item.status == 'locked'" type="button" class="btn btn-sm btn-success" (click)="goTo(item._id,'unlock')">
+                        <i class="fa fa-unlock"></i>
+                    </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div>
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

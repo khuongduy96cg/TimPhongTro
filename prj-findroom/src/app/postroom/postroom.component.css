@@ -1,0 +1,102 @@
+.submit-room-main-content {
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
+.no-padding-right {
+    padding-right: 0px;
+}
+.no-padding-left {
+    padding-left: 0px;
+}
+.list-type-title ul {
+    padding-left: 0px;
+}
+.list-type-title ul .li-label {
+    background-color: #ecf0f1;
+    color: #FF0046;
+    border-bottom: none;
+    font-weight: 600;
+    border-left: 3px solid #FF0046;
+    font-size: 16px;
+}
+.list-type-title ul li {
+    list-style: none;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #FFF;
+    padding-top: 10px;
+    padding-left: 10px;
+    border-left: 1px solid #d1d1d1;
+    background-color: #ecf0f1;
+}
+.submit-room-main-content .control-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #2e3339;
+    margin-bottom: 5px;
+}
+.submit-room-main-content .input-group-addon {
+    border-radius: 0px;
+    font-weight: 600;
+    color: #FF0046;
+}
+.input-group-addon:last-child {
+    border-left: 0;
+}
+.input-group-addon {
+    padding: 6px 12px;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1;
+    color: #555;
+    text-align: center;
+    background-color: #eee;
+    border: 1px solid #ccc;
+        border-left-width: 1px;
+        border-left-style: solid;
+        border-left-color: rgb(204, 204, 204);
+    border-radius: 4px;
+}
+
+.submit-room-main-content .submit-info-title, .submit-room-main-content .control-label {
+
+    font-size: 14px;
+    font-weight: 600;
+    color: #2e3339;
+    margin-bottom: 5px;
+
+}
+.submit-room-main-content .room-option {
+    background-color: #ecf0f1;
+    padding: 10px;
+}
+.submit-room-main-content .submit-info-title, .submit-room-main-content .control-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #2e3339;
+    margin-bottom: 5px;
+}
+.submit-room-main-content .submit-btn-room {
+    text-align: center;
+}
+.btn-send-room {
+    margin-top: 30px;
+    background: #33cc66;
+    color: #FFF;
+    padding: 10px 30px;
+    border: none;
+    margin-right: 0px;
+    font-size: 18px;
+    border-radius: 0px;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+.btn-send-room:hover {
+    background: #FF0047;
+}
+.submit-room-main-content .btn-send-room span {
+    margin-right: 10px;
+}
+span.error {
+    margin-left: 10px;
+    color: red;
+}

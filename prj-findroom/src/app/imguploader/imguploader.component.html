@@ -1,0 +1,13 @@
+<image-upload
+  url="/uploadfile/store/api"
+  buttonCaption="Chọn ảnh"
+  dropBoxMessage="Kéo thả ảnh vào đây"
+  clearButtonCaption="Xóa"
+  [max]="100"
+  [maxFileSize]="1048576"
+  [fileTooLargeMessage]="'File kích cỡ quá lớn!'"
+  [extensions]="['jpg','png','jpeg']"
+  (removed)="onRemoved($event)"
+  (uploadFinished)="onUploadFinished($event)"
+  (uploadStateChanged)="onUploadStateChanged($event)">
+</image-upload>

@@ -1,0 +1,411 @@
+<app-navbarhome></app-navbarhome>
+<div class="container-fluid">
+  <br>
+  <h1 style="color:red; text-align:center; background-color: #ecf0f1;">ĐĂNG TIN</h1>
+  <form #roomForm="ngForm">
+    <div id="step-3" class="col-md-12 submit-room-main-content" style="display: block;">
+      <div class="list-type-title">
+        <ul>
+          <li class="li-label">Nhập Thông Tin Cơ Bản</li>
+        </ul>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <label class="control-label">Nhu cầu</label>
+          <div class="form-group">
+            <div class="custom-control custom-radio" *ngFor="let item of needs">
+              <input id="need_{{item._id}}" name="need" [(ngModel)]="room.base.need" [value]="item._id" class="custom-control-input" checked="" type="radio">
+              <label class="custom-control-label" for="need_{{item._id}}">{{item.name}}</label>
+            </div>
+            <!-- <div class="custom-control custom-radio">
+              <input id="oGhep" name="need" [(ngModel)]="room.base.need" [value]="2" class="custom-control-input" type="radio">
+              <label class="custom-control-label" for="oGhep">TÌm bạn ở ghép</label>
+            </div> -->
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label class="control-label">Loại phòng</label>
+          <div class="form-group">
+            <div class="custom-control custom-radio" *ngFor="let item of types">
+              <input id="type_{{item._id}}" name="type" [(ngModel)]="room.base.type" [value]="item._id" class="custom-control-input" checked="" type="radio">
+              <label class="custom-control-label" for="type_{{item._id}}">{{item.name}}</label>
+            </div>
+            <!-- <div class="custom-control custom-radio">
+              <input id="nhaNguyenCan" name="type" [(ngModel)]="room.base.type" [value]="2" class="custom-control-input" type="radio">
+              <label class="custom-control-label" for="nhaNguyenCan">Nhà nguyên căn</label>
+            </div> -->
+          </div>
+        </div>
+      </div>
+      <div class="list-type-title">
+        <ul>
+          <li class="li-label">Nhập Thông Tin Chi Tiết</li>
+        </ul>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <div class="control-label">Tiêu đề <span style="color:red">(*)</span></div>
+            <div>
+              <input id="title" [(ngModel)]="room.detail.title" name="title" class="form-control" value="" type="text">
+              <!-- is-invalid
+              <div class="invalid-feedback">Sorry, that username's taken. Try another?</div> -->
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="control-label">Số điện thoại <span style="color:red">(*)</span></div>
+            <div>
+              <input [(ngModel)]="room.detail.phone" name="phone" class="form-control" value="" type="text">
+              <span class="help-block"></span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <div>
+                  <div class="control-label">Giá <span style="color:red">(*)</span></div>
+                  <div class="input-group">
+                    <input [(ngModel)]="room.detail.price" name="price" class="form-control money-input valid" data-thousands="," data-decimal="." data-precision="0" aria-invalid="false"
+                      type="text">
+                    <span class="input-group-addon">đ/tháng</span>
+                  </div>
+                  <span class="help-block"></span>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <div>
+                  <div class="control-label">Diện tích <span style="color:red">(*)</span></div>
+                  <div class="input-group">
+                    <input [(ngModel)]="room.detail.area" name="area" value="" class="form-control" placeholder="nhập số, viết liền" type="text">
+                    <span class="input-group-addon">M
+                      <sup>2</sup>
+                    </span>
+                    <span class="help-block"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <div class="control-label">Tỉnh/Thành phố <span style="color:red">(*)</span></div>
+                <div>
+                  <select [(ngModel)]="room.detail.province" name="province_id" class="form-control address_input valid" size="1" aria-required="true" aria-invalid="false" aria-describedby="province_id-error"
+                  (change)="firstDropDownChanged($event.target.value)">
+                    <option value="0" selected>Chọn...</option>
+                    <option *ngFor="let item of provinces" value="{{item._id}}">{{item.name}}</option>
+                  </select>
+                  <span class="help-block"></span>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <div class="control-label">Quận/Huyện <span style="color:red">(*)</span></div>
+                <div>
+                  <select [(ngModel)]="room.detail.district" name="district_id" class="form-control address_input valid" size="1" aria-required="true" aria-invalid="false" aria-describedby="district_id-error"
+                  (change)="secondDropDownChanged($event.target.value)">
+                    <option value="0">Chọn..</option>
+                    <option *ngFor="let item of districts" value="{{item._id}}">{{item.name}}</option>
+                  </select>
+                  <span class="help-block"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="clearfix"></div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <div class="control-label">Xã/Phường <span style="color:red">(*)</span></div>
+                <div>
+                  <select id="street_id" [(ngModel)]="room.detail.ward" name="ward_id" class="form-control address_input valid" size="1" aria-invalid="false"
+                  (change)="thirdDropDownChanged($event.target.value)">
+                    <option value="0">Chọn Quận/huyện trước</option>
+                    <option *ngFor="let item of wards" value="{{item._id}}">{{item.name}}</option>
+                  </select>
+                  <span class="help-block"></span>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <div class="control-label">Đường/Phố <span style="color:red">(*)</span></div>
+                <div>
+                  <select id="street" [(ngModel)]="room.detail.street" name="street_id" class="form-control address_input valid" size="1" aria-invalid="false">
+                    <option value="0">Chọn Quận/huyện trước</option>
+                    <option *ngFor="let item of streets" value="{{item._id}}">{{item.name}}</option>
+                  </select>
+                  <span class="help-block"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <div class="control-label">Địa chỉ cụ thể <span style="color:red">(*)</span></div>
+                <div>
+                  <input [(ngModel)]="room.detail.addressdetail" name="addressdetail" class="form-control address_input" value="" type="text">
+                  <span class="help-block"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    
+        <div class="col-md-12">
+          <div class="list-type-title">
+            <ul>
+              <li class="li-label">Thông tin bổ sung
+                <span *ngIf="room.base.type ===1"> Nhà trọ, Phòng trọ</span>
+                <span *ngIf="room.base.type >=2"> Nhà nguyên căn</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-6" *ngIf="room.base.type ===1">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <div class="tang">
+                  <div class="control-label">Tầng</div>
+                  <div>
+                    <select [(ngModel)]="room.more.floor" name="floor" class="form-control" size="1">
+                      <option value="">Chọn..</option>
+                      <option value="Tầng 1">Tầng 1</option>
+                      <option value="Tầng 2">Tầng 2</option>
+                      <option value="Tầng 3">Tầng 3</option>
+                      <option value="Tầng 4">Tầng 4</option>
+                      <option value="Tầng 5">Tầng 5</option>
+                      <option value="Tầng 6">Tầng 6</option>
+                      <option value="Tầng 7">Tầng 7</option>
+                      <option value="Tầng 8">Tầng 8</option>
+                      <option value="Tầng 9">Tầng 9</option>
+                      <option value="Tầng 10">Tầng 10</option>
+                      <option value="Chưa xác định">Chưa xác định</option>
+                    </select>
+                    <span class="help-block"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <div class="vs">
+                  <div class="control-label">Vệ sinh</div>
+                  <div>
+                    <select [(ngModel)]="room.more.tolet" name="tolet" class="form-control" size="1">
+                      <option value="">Chọn..</option>
+                      <option value="Khép kín">Khép kín</option>
+                      <option value="Chung">Chung</option>
+                      <option value="Chưa xác định">Chưa xác định</option>
+                    </select>
+                    <span class="help-block"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group people-in">
+            <div class="submit-info-title">Số người ở tối đa</div>
+            <div>
+              <select [(ngModel)]="room.more.countpeople" name="countpeople" class="form-control" size="1">
+                <option value="">Chọn..</option>
+                <option value="1 người">1 người</option>
+                <option value="2 người">2 người</option>
+                <option value="3 người">3 người</option>
+                <option value="4 người">4 người</option>
+                <option value="5 người">5 người</option>
+                <option value="6 người">6 người</option>
+                <option value="7 người">7 người</option>
+                <option value="8 người">8 người</option>
+                <option value="9 người">9 người</option>
+                <option value="Chưa xác định">Chưa xác định</option>
+              </select>
+              <span class="help-block"></span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <div class="elec">
+                  <div class="submit-info-title">Giá điện</div>
+                  <select [(ngModel)]="room.more.electricprice" name="electricprice" class="form-control price_set" for="elec_price_extention" size="1">
+                    <option value="">Chọn..</option>
+                    <option value="Nhà nước quy định">Giá nhà nước quy định</option>
+                    <option value="Theo đầu người">Giá theo đầu người</option>
+                    <option value="Chủ nhà quy định">Giá chủ nhà quy định</option>
+                    <option value="Chưa xác định">Giá chưa xác định</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <div class="water">
+                  <div class="submit-info-title">Giá nước</div>
+                  <select [(ngModel)]="room.more.waterprice" name="waterprice" class="form-control price_set" for="water_price_extention" size="1">
+                    <option value="">Chọn..</option>
+                    <option value="Nhà nước quy định">Giá nhà nước quy định</option>
+                    <option value="Theo đầu người">Giá theo đầu người</option>
+                    <option value="Chủ nhà quy định">Giá chủ nhà quy định</option>
+                    <option value="Chưa xác định">Giá chưa xác định</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="price_group" class="form-group price-elec-water-input">
+            <div class="elec elec_set"></div>
+            <div class="water water_set"></div>
+          </div>
+        </div>
+        <div class="col-md-6" *ngIf="room.base.type >=2">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <div class="tang">
+                  <div class="control-label">Số tầng</div>
+                  <div>
+                    <select [(ngModel)]="room.more.countfloor" name="countfloor" class="form-control" size="1">
+                      <option value="">Chọn..</option>
+                      <option value="1"> 1</option>
+                      <option value="2"> 2</option>
+                      <option value="3"> 3</option>
+                      <option value="4"> 4</option>
+                      <option value="5"> 5</option>
+                      <option value="6"> 6</option>
+                      <option value="7"> 7</option>
+                      <option value="8"> 8</option>
+                      <option value="9"> 9</option>
+                      <option value="10"> 10</option>
+                      <option value="Chưa xác định">Chưa xác định</option>
+                    </select>
+                    <span class="help-block"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <div class="vs">
+                  <div class="control-label">Số phòng vệ sinh</div>
+                  <div>
+                    <select [(ngModel)]="room.more.counttolet" name="counttolet" class="form-control" size="1">
+                        <option value="">Chọn..</option>
+                        <option value="1"> 1</option>
+                        <option value="2"> 2</option>
+                        <option value="3"> 3</option>
+                        <option value="4"> 4</option>
+                        <option value="5"> 5</option>
+                        <option value="6"> 6</option>
+                        <option value="7"> 7</option>
+                        <option value="8"> 8</option>
+                        <option value="9"> 9</option>
+                        <option value="10"> 10</option>
+                        <option value="Chưa xác định">Chưa xác định</option>
+                    </select>
+                    <span class="help-block"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+    
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <div class="elec">
+                  <div class="submit-info-title">Số phòng ngủ</div>
+                  <select [(ngModel)]="room.more.countbedroom" name="countbedroom" class="form-control valid" size="1" aria-invalid="false">
+                    <option value="">Chọn..</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="Chưa xác định">Chưa xác định</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <div class="water">
+                  <div class="submit-info-title">Hướng nhà</div>
+                  <select [(ngModel)]="room.more.direction" name="direction" class="form-control" size="1">
+                    <option value="">Chọn..</option>
+                    <option value="Đông">Đông</option>
+                    <option value="Đông bắc">Đông bắc</option>
+                    <option value="Đông nam">Đông nam</option>
+                    <option value="Bắc">Bắc</option>
+                    <option value="Tây">Tây</option>
+                    <option value="Tây bắc">Tây bắc</option>
+                    <option value="Tây nam">Tây nam</option>
+                    <option value="Nam">Nam</option>
+                    <option value="Chưa xác định">Chưa xác định</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="price_group" class="form-group price-elec-water-input">
+            <div class="elec elec_set"></div>
+            <div class="water water_set"></div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="submit-info-title">Tiện ích của phòng <span style="color:red">(*)</span></div>
+          <div class="form-group room-option">
+            <div class="row">
+              <div class="col-md-4" *ngFor="let item of utilities">
+                <div class="checkbox checkbox-success">
+                  <input [(ngModel)]="item.checked" name="utilitiess[]" id="utility_{{item._id}}" value="{{item._id}}" type="checkbox">
+                  <label for="utility_{{item._id}}"> {{item.name}} </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="clearfix" style="height: 5px;"></div>
+        <div class="col-md-12">
+          <div class="form-group">
+            <div class="submit-info-title">Ảnh chi tiết của phòng <span style="color:red">(*)</span></div>
+            <app-imguploader></app-imguploader>
+          </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="col-md-6">
+          <div class="submit-room-des">
+            <div class="submit-info-title validate-require">Mô tả chi tiết <span style="color:red">(*)</span></div>
+            <textarea [(ngModel)]="room.description" name="description" id="" rows="10" style="width:100%;"></textarea>
+          </div>
+        </div>
+        <div class="col-md-6 gmaps-group">
+          <div class="submit-room-map">
+            <div class="submit-info-title">Kéo thả vị trí trên bản đồ để chỉnh địa điểm chính xác hơn</div>
+    
+          </div>
+        </div>
+        <div class="col-md-12 submit-btn-room">
+            <flash-messages></flash-messages>
+          <button id="submit_form" class="btn btn-send-room" [disabled]="!enableBtn" [hidden]="!flag" (click)="addNewRoom()">
+            <span class="fa fa-send"></span>Đăng tin</button>
+  
+           
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

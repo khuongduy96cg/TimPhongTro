@@ -1,0 +1,41 @@
+<app-navbar></app-navbar>
+<div class="row" style="margin-right:auto;">
+  <div class="col-xs-12 col-sm-2">
+    <app-tabbar></app-tabbar>
+  </div>
+  
+  <div class="col-xs-12 col-sm-10">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="#">
+          <i class="fa fa-home"></i>
+        </a>
+      </li>
+      <li class="breadcrumb-item active">Quản lý tiện ích phòng</li>
+    </ol>
+    <br>
+    <div class="card border-success mb-3">
+      <div class="card-header text-white bg-success"><i class="fa fa-cog"></i> Thêm mới tiện ích phòng</div>
+      <div class="card-body">
+        <form #utilityForm="ngForm">
+          <div class="form-group row">
+            <label for="inputUtilityName" class="col-sm-2 col-form-label">Tên tiện ích phòng <span style="color:red">(*)</span></label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="inputUtilityName" name="name" [(ngModel)]="utility.name" placeholder="May lanh" required>
+            </div>
+          </div>
+  
+          <div class="form-group row">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-10">
+              <button type="button" class="btn btn-success" (click)="addNewUtility()"><i class="fa fa-cloud"></i> Lưu</button>
+              <button type="button" class="btn btn-primary" (click)="refreshForm()"><i class="fa fa-refresh"></i> Làm mới</button>
+              <button type="button" class="btn btn-danger" (click)="goBack()"><i class="fa fa-caret-square-o-left"></i> Trở về</button>
+            </div>
+          </div>
+        </form>
+        <flash-messages></flash-messages>
+      </div>
+    </div>
+  </div>
+</div>

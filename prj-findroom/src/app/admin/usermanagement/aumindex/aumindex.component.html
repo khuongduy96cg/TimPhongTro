@@ -1,0 +1,91 @@
+<app-navbar></app-navbar>
+<div class="row" style="margin-right:auto;">
+  <div class="col-xs-12 col-sm-2">
+    <app-tabbar></app-tabbar>
+  </div>
+  <!--  -->
+  <div class="col-xs-12 col-sm-10">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item mt-li-element">
+        <a href="#">
+          <i class="fa fa-home"></i>
+        </a>
+      </li>
+      <li class="breadcrumb-item mt-li-element mr-li-element active">Quản lý người dùng </li>
+      
+      <li>
+        <button type="button" class="btn btn-sm btn-success" (click)="goTo()">
+          <i class="fa fa-plus"></i> Thêm mới</button>
+      </li>
+      
+      <li>
+        <button type="button" class="btn btn-sm btn-danger" (click)="showDeleteButton()">
+          <i class="fa fa-trash"></i>
+          {{showDelMess}}
+        </button>
+      </li>
+    </ol>
+    <br>
+    <div class="form-inline">
+      <input class="form-control" type="text" name="" id="" placeholder="Tìm kiếm">
+      <button type="button" class="btn btn-success">Tìm kiếm</button>
+      <select class="form-control" id="uMStatusSelect" style="margin-left:auto; margin-right:0;" (change)="statusDropDownChanged($event.target.value)">
+        <option value="all">Tất cả</option>
+        <option value="active" selected>Hoạt động</option>
+        <option value="locked">Bị khóa</option>
+      </select>
+    </div>
+    <div class="card border-success mb-3">
+      <div class="card-header text-white bg-success">Danh sách</div>
+      <div class="card-body">
+
+        <table class="table table-hover table-bordered">
+          <thead>
+            <tr>
+              <th scope="col">Id</th>
+              <th scope="col">Tên</th>
+              <th scope="col">Thông tin</th>
+              <th scope="col">Thông tin khác</th>
+              <th scope="col">Thao tác</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of users | paginate: { itemsPerPage: 5, currentPage: p }">
+              <th scope="row">{{item._id}}</th>
+              <td>{{item.name}}</td>
+              <td>
+                <ul>
+                  <li *ngIf="item.status == 'active'">Trạng thái : <span class="badge badge-success">Hoạt động</span></li>
+                  <li *ngIf="item.status == 'locked'">Trạng thái : <span class="badge badge-warning">Bị khóa</span></li>
+                  <li>Số điện thoại : {{item.phone}}</li>
+                  <li>Email : {{item.email}}</li>
+                  <li>Địa chỉ : {{item.address}}</li>
+                  <li>Ngày sinh : {{item.birthday}}</li>
+                  <li>Mật khẩu : <span *ngIf="show">{{item.password}}</span>
+                    <button type="button" class="btn btn-sm btn-primary" (click)="showHidePassword()"><i class="fa fa-eye{{iconShowHidePassword}}"></i> {{textShowHidePassword}}</button>
+                  </li>
+                </ul>
+              </td>
+              <td>
+                <ul>
+                  <li>{{item.moreinformation}}</li>
+                </ul>
+              </td>
+              <td>
+                <button *ngIf="showDel" type="button" class="btn btn-sm btn-danger" (click)="deleteUser(item._id)">
+                  <i class="fa fa-trash"></i>
+                </button>
+                <button type="button" class="btn btn-sm btn-success" (click)="goUpdate(item._id)">
+                  <i class="fa fa-pencil"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div>
+          <pagination-controls (pageChange)="p = $event"></pagination-controls>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

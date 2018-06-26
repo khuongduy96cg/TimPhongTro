@@ -1,0 +1,56 @@
+<app-navbar></app-navbar>
+<div class="row" style="margin-right:auto;">
+    <div class="col-xs-12 col-sm-2">
+      <app-tabbar></app-tabbar>
+    </div>
+    
+    <div class="col-xs-12 col-sm-10">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="#">
+            <i class="fa fa-home"></i>
+          </a>
+        </li>
+        <li class="breadcrumb-item active">Quản lý phường/xã</li>
+      </ol>
+      <br>
+      <div class="card border-success mb-3">
+        <div class="card-header text-white bg-success"><i class="fa fa-cog"></i> Cập nhật phường/xã</div>
+        <div class="card-body">
+          <form #wardForm="ngForm">
+            <!-- <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Chọn tỉnh <span style="color:red">(*)</span></label>
+                <div class="col-sm-10">
+                    <select name="provinceid" class="form-control" [(ngModel)]="tempprvid" (change)="provinceDropDownChanged($event.target.value)">
+                      <option value="-1">--Chọn--</option>
+                        <option *ngFor="let item of provinces" value="{{item._id}}">{{item.name}}</option>
+                      </select>
+                </div>
+            </div> -->
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Mã quận <span style="color:red">(*)</span></label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="inputDistrictId" name="districtid" [(ngModel)]="ward.districtid" [readonly]="true" required>
+                </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputWardName" class="col-sm-2 col-form-label">Tên phường/xã <span style="color:red">(*)</span></label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="inputWardName" name="name" [(ngModel)]="ward.name" placeholder="Quận Thủ Đức" required>
+              </div>
+            </div>
+    
+            <div class="form-group row">
+              <div class="col-sm-2"></div>
+              <div class="col-sm-10">
+                <button type="button" class="btn btn-success" (click)="updateWard()"><i class="fa fa-cloud"></i> Lưu</button>
+                <button type="button" class="btn btn-primary" (click)="refreshForm()"><i class="fa fa-refresh"></i> Làm mới</button>
+                <button type="button" class="btn btn-danger" (click)="goBack()"><i class="fa fa-caret-square-o-left"></i> Trở về</button>
+              </div>
+            </div>
+          </form>
+          <flash-messages></flash-messages>
+        </div>
+      </div>
+    </div>
+  </div>

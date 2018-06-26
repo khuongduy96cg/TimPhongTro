@@ -1,0 +1,37 @@
+.nav-pills>.active>a,
+.nav-pills>.active>a:hover,
+.nav-pills>li>a:hover {
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 0px;
+  border-bottom-width: 4px;
+  border-bottom-style: solid;
+  border-bottom-color: #43ac6a ;
+  color: #fff !important;
+  background-color: transparent !important;
+}
+.full {
+  height: calc(100vh - 20px);
+}
+.my-bg-c {
+  /* background-color: #104E8B; */
+  background-color: #2e3339;
+}
+.active {
+  border: 0px;
+}
+.nav-pills>li>a {
+  border-radius: 0px;
+}
+.mt-li-element {
+  margin-top:5px;
+}
+.mb-li-element {
+  margin-bottom:5px;
+}
+.ml-li-element {
+  margin-left:5px;
+}
+.mr-li-element {
+  margin-right:5px;
+}
