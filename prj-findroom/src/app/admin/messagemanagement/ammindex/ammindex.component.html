@@ -1,0 +1,114 @@
+<app-navbar></app-navbar>
+<div class="row" style="margin-right:auto;">
+  <div class="col-xs-12 col-sm-2">
+    <app-tabbar></app-tabbar>
+  </div>
+  <!--  -->
+  <div class="col-xs-12 col-sm-10">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item mt-li-element">
+        <a href="#">
+          <i class="fa fa-home"></i>
+        </a>
+      </li>
+      <li class="breadcrumb-item mt-li-element mr-li-element active">Quản lý tin nhắn </li>
+      
+      <!-- <li>
+        <button type="button" class="btn btn-sm btn-success" (click)="goTo()">
+          <i class="fa fa-plus"></i> Thêm mới</button>
+      </li>
+      
+      <li>
+        <button type="button" class="btn btn-sm btn-danger" (click)="showDeleteButton()">
+          <i class="fa fa-trash"></i>
+          {{showMess}}
+        </button>
+      </li> -->
+    </ol>
+    <br>
+    <div class="form-inline">
+      <input class="form-control" type="text" name="" id="" placeholder="Tìm kiếm">
+      <button type="button" class="btn btn-success">Tìm kiếm</button>
+
+      <select class="form-control" id="selectMessage" style="margin-left:auto; margin-right:0;" (change)="messageDropDownChanged($event.target.value)">
+        <option value="-1" disabled>Chọn...</option>
+        <option value="sent" selected>Chưa trả lời</option>
+        <option value="replied">Đã trả lời</option>
+      </select>
+
+    </div>
+    <div class="card border-success mb-3">
+      <div class="card-header text-white bg-success">Danh sách</div>
+      <div class="card-body">
+
+        <table *ngIf="showTable == 'sent'" class="table table-hover table-bordered">
+          <thead>
+            <tr>
+              <th scope="col">Id</th>
+              <th scope="col">Người gửi</th>
+              <th scope="col">Nội dung</th>
+              <th scope="col">Ngày gửi</th>
+              <th scope="col">Thao tác</th>
+            </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let item of messages | paginate: { itemsPerPage: 10, currentPage: p }">
+                  <td>{{item._id}}</td>
+                  <td>{{item.messagesend.by.name}}</td>
+                  <td>{{item.messagesend.content}}</td>
+                  <td>{{item.messagesend.date}}</td>
+                  <td>
+                    <!-- <button *ngIf="show" type="button" class="btn btn-sm btn-danger" (click)="deleteUtility(item._id)">
+                      <i class="fa fa-trash"></i>
+                    </button> -->
+                    <button type="button" class="btn btn-sm btn-success" (click)="goReply(item._id)">
+                      <i class="fa fa-reply"></i>
+                    </button>
+                  </td>
+                </tr>
+          </tbody>
+        </table>
+        <table *ngIf="showTable == 'replied'" class="table table-hover table-bordered">
+            <thead>
+              <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Thông tin</th>
+                <th scope="col">Thông tin</th>
+                <th scope="col">Thao tác</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of messages | paginate: { itemsPerPage: 10, currentPage: p }">
+                    <td>{{item._id}}</td>
+                    <td>
+                      <ul>
+                        <li>Người gửi : {{item.messagesend.by.name}}</li>
+                        <li>Nội dung: {{item.messagesend.content}}</li>
+                        <li>Ngày gửi :  {{item.messagesend.date}}</li>
+                      </ul>
+                    </td>
+                    <td>
+                        <ul>
+                            <li>Người phản hồi :  {{item.messagereply.by.name}}</li>
+                            <li>Nội dung:  {{item.messagereply.content}}</li>
+                            <li>Ngày phản hồi :  {{item.messagereply.date}}</li>
+                          </ul>
+                    </td>
+                    <td>
+                      <!-- <button *ngIf="show" type="button" class="btn btn-sm btn-danger" (click)="deleteUtility(item._id)">
+                        <i class="fa fa-trash"></i>
+                      </button> -->
+                      <button type="button" class="btn btn-sm btn-danger" (click)="deleteMessageReply(item._id)">
+                        <i class="fa fa-trash"></i>
+                      </button>
+                    </td>
+                  </tr>
+            </tbody>
+          </table>
+        <div>
+          <pagination-controls (pageChange)="p = $event"></pagination-controls>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

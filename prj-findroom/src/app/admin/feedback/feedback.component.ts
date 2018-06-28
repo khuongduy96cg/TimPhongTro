@@ -63,6 +63,8 @@ export class FeedbackComponent implements OnInit {
     if(action == 'accept') this.feedback.content = "Tin của bạn đã được duyệt.";
     if(action == 'lock') this.feedback.content = "Tin của bạn bị khóa. Lý do : ";
     if(action == 'unlock') this.feedback.content = "Tin của bạn được mở khóa. Lý do : ";
+    if(action == 'undo') this.feedback.content = "Tin của bạn đã được phục hồi sau khi bị gỡ bỏ";
+    if(action == 'remove') this.feedback.content = "Tin của bạn đã bị gỡ bỏ khỏi trang chủ. Lý do : ";
   }
   refreshForm(){
     this.feedback.title = "Website tìm phòng trọ";

@@ -24,6 +24,8 @@
       <div class="card-header text-white bg-success" *ngIf="action == 'accept'">Duyệt tin</div>
       <div class="card-header text-white bg-warning" *ngIf="action == 'lock'">Khóa tin đã đăng</div>
       <div class="card-header text-white bg-success" *ngIf="action == 'unlock'">Mở khóa tin đã đăng</div>
+      <div class="card-header text-white bg-success" *ngIf="action == 'undo'">Phục hồi tin đã gỡ bỏ</div>
+      <div class="card-header text-white bg-danger" *ngIf="action == 'remove'">Gỡ bỏ tin đã đăng</div>
       <div class="card-body">
         <form #feedBack="ngForm">
           

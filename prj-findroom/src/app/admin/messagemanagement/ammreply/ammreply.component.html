@@ -1,0 +1,58 @@
+<app-navbar></app-navbar>
+<div class="row" style="margin-right:auto;">
+  <div class="col-xs-12 col-sm-2">
+    <app-tabbar></app-tabbar>
+  </div>
+  <!--  -->
+  <div class="col-xs-12 col-sm-10">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item mt-li-element">
+        <a href="#">
+          <i class="fa fa-home"></i>
+        </a>
+      </li>
+      <li class="breadcrumb-item mt-li-element mr-li-element active">Trả lời tin nhắn </li>
+      
+    </ol>
+    <br>
+    <div class="form-inline">
+      <input class="form-control" type="text" name="" id="" placeholder="Tìm kiếm">
+      <button type="button" class="btn btn-success">Tìm kiếm</button>
+
+    </div>
+    <div class="card border-success mb-3">
+      <div class="card-header text-white bg-success">Nội dung</div>
+      <div class="card-body">
+
+        <form #replymessageForm="ngForm">
+
+            <div class="form-group row">
+                <label for="labelMessage" class="col-sm-2 col-form-label">Tin nhắn </label>
+                <div class="col-sm-10">
+                 <p style="background-color: #cccc; padding:10px">{{message?.messagesend?.content}}</p>
+                </div>
+              </div>
+
+          <div class="form-group row">
+            <label for="inputContent" class="col-sm-2 col-form-label">Trả lời <span style="color:red">(*)</span></label>
+            <div class="col-sm-10">
+              <textarea type="text" class="form-control" name="content" id="inputContent" [(ngModel)]="message.messagereply.content" cols="30" rows="10"></textarea>
+              <!-- <textarea type="text" class="form-control" id="inputContent" name="content" [(ngModel)]="district.name" placeholder="Quận Thủ Đức" required></textarea> -->
+            </div>
+          </div>
+  
+          <div class="form-group row">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-10">
+              <button type="button" class="btn btn-success" (click)="replyMessage()"><i class="fa fa-cloud"></i> Trả lời</button>
+              <button type="button" class="btn btn-primary" (click)="refreshForm()"><i class="fa fa-refresh"></i> Làm mới</button>
+              <button type="button" class="btn btn-danger" (click)="goBack()"><i class="fa fa-caret-square-o-left"></i> Trở về</button>
+            </div>
+          </div>
+        </form>
+        <flash-messages></flash-messages>
+        
+      </div>
+    </div>
+  </div>
+</div>

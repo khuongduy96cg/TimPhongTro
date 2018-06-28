@@ -60,6 +60,8 @@ import { AiindexComponent } from './admin/information/aiindex/aiindex.component'
 import { TabbarComponent } from './admin/tabbar/tabbar.component';
 import { FeedbackComponent } from './admin/feedback/feedback.component';
 import { NavbarhomeComponent } from './navbarhome/navbarhome.component';
+import { AmmindexComponent } from './admin/messagemanagement/ammindex/ammindex.component';
+import { AmmreplyComponent } from './admin/messagemanagement/ammreply/ammreply.component';
 
 const appRoutes : Routes = [
   {path: '', redirectTo: 'home', pathMatch:'full'},
@@ -77,6 +79,7 @@ const appRoutes : Routes = [
   {path: 'a/nm/index', component:AnmindexComponent},
   {path: 'a/tm/index', component:AtmindexComponent},
   {path: 'a/utm/index', component:AutmindexComponent},
+  {path: 'a/mm/index', component:AmmindexComponent},
   {path: 'a/rm/index', component:ArmindexComponent},
   {path: 'a/pm/add', component:ApmaddComponent},
   {path: 'a/um/add', component:AumaddComponent},
@@ -95,6 +98,7 @@ const appRoutes : Routes = [
   {path: 'a/utm/update/:id', component:AutmupdateComponent},
   {path: 'a/um/update/:id', component:AumupdateComponent},
   {path: 'a/prm/fb/:id/:action', component:FeedbackComponent},
+  {path: 'a/mm/reply/:id', component:AmmreplyComponent},
   {path: 'carousel', component:CarouselComponent},
   {path: 'wizard', component:WizardComponent},
   {path: 'postroom', component:PostroomComponent}
@@ -142,7 +146,9 @@ const appRoutes : Routes = [
     AiindexComponent,
     TabbarComponent,
     FeedbackComponent,
-    NavbarhomeComponent
+    NavbarhomeComponent,
+    AmmindexComponent,
+    AmmreplyComponent
   ],
   imports: [
     BrowserModule,

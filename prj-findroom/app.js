@@ -16,6 +16,7 @@ var street = require('./routes/street');
 var need = require('./routes/need');
 var type = require('./routes/type');
 var utility = require('./routes/utility');
+var message = require('./routes/message');
 var uploadfile = require('./routes/uploadfile');
 // var style = require('./routes/style');
 // var manu = require('./routes/manu');
@@ -45,6 +46,7 @@ app.use('/street' , street);
 app.use('/need' , need);
 app.use('/type' , type);
 app.use('/utility', utility);
+app.use('/message', message);
 app.use('/uploadfile' , uploadfile);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

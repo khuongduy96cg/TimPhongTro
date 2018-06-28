@@ -37,7 +37,8 @@ export class AprmindexComponent implements OnInit {
     if(val == 'all'){
       this.getAllRooms();
     }
-    else if(val == _Status.Status_accepted || val == _Status.Status_waiting || val == _Status.Status_refused || val == _Status.Status_locked){
+    else if(val == _Status.Status_accepted || val == _Status.Status_waiting || val == _Status.Status_refused ||
+       val == _Status.Status_locked || val == _Status.Status_removed){
       this.getRoomsByStatus(val);
     }
   }

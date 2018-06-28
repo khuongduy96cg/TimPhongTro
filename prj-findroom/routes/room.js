@@ -10,11 +10,14 @@ const stt_accept = "accepted";
 const stt_refused = "refused";
 const stt_waiting = "waiting";
 const stt_locked = "locked";
+const stt_removed = "removed";
 //
 const act_accept = "accept";
 const act_unlock = "unlock";
 const act_lock = "lock";
 const act_refuse = "refuse";
+const act_remove = "remove";
+const act_undo = "undo";
 //
 
 //get all rooms
@@ -183,6 +186,22 @@ router.post('/feedback', (req, res, next) => {
             "info.modifiedBy" : infoAdmin,
             "info.modifiedDate" : new Date(Date.now()),
             "status": stt_accept
+        }
+    }
+    else if(newFeedback.action == act_undo){
+        infoAdmin.phone = "";
+        newRoom = {
+            "info.modifiedBy" : infoAdmin,
+            "info.modifiedDate" : new Date(Date.now()),
+            "status": stt_accept
+        }
+    }
+    else if(newFeedback.act_remove){
+        infoAdmin.phone = "";
+        newRoom = {
+            "info.modifiedBy" : infoAdmin,
+            "info.modifiedDate" : new Date(Date.now()),
+            "status": newFeedback.action + "d"
         }
     }
     else  {

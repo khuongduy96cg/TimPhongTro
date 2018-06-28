@@ -44,6 +44,11 @@
     "secure":false,
     "logLevel":"debug"
   },
+  "/message/*":{
+    "target":"http://localhost:8080",
+    "secure":false,
+    "logLevel":"debug"
+  },
   "/uploadfile/*":{
     "target":"http://localhost:8080",
     "secure":false,

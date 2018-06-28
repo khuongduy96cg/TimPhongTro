@@ -24,6 +24,7 @@
         <option value="waiting" selected>Chờ duyệt</option>
         <option value="refused">Bị từ chối</option>
         <option value="locked">Bị khóa</option>
+        <option value="removed">Đã gỡ bỏ</option>
       </select>
     </div>
     <div class="card border-success mb-3">
@@ -107,6 +108,14 @@
                     <button *ngIf="item.status == 'locked'" type="button" class="btn btn-sm btn-success" (click)="goTo(item._id,'unlock')">
                         <i class="fa fa-unlock"></i>
                     </button>
+                    <!-- go bo tin da dang -->
+                    <button *ngIf="item.status == 'accepted'" type="button" class="btn btn-sm btn-danger" (click)="goTo(item._id,'remove')">
+                      <i class="fa fa-trash"></i>
+                  </button>
+                  <!-- undo tin da go bo -->
+                  <button *ngIf="item.status == 'removed'" type="button" class="btn btn-sm btn-success" (click)="goTo(item._id,'undo')">
+                    <i class="fa fa-undo"></i>
+                </button>
               </td>
             </tr>
           </tbody>
